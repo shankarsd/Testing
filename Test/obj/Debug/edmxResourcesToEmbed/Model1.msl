@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestingModelStoreContainer" CdmEntityContainer="TestingEntities">
+    <EntitySetMapping Name="tblAllots">
+      <EntityTypeMapping TypeName="TestingModel.tblAllot">
+        <MappingFragment StoreEntitySet="tblAllot">
+          <ScalarProperty Name="Alt_Id" ColumnName="Alt_Id" />
+          <ScalarProperty Name="Pr_Id" ColumnName="Pr_Id" />
+          <ScalarProperty Name="Tst_Id" ColumnName="Tst_Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Pst_Date" ColumnName="Pst_Date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEmployees">
+      <EntityTypeMapping TypeName="TestingModel.tblEmployee">
+        <MappingFragment StoreEntitySet="tblEmployee">
+          <ScalarProperty Name="emp_SL" ColumnName="emp_SL" />
+          <ScalarProperty Name="ep_Id" ColumnName="ep_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProjects">
+      <EntityTypeMapping TypeName="TestingModel.tblProject">
+        <MappingFragment StoreEntitySet="tblProject">
+          <ScalarProperty Name="Pr_Id" ColumnName="Pr_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Domain" ColumnName="Domain" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTesters">
+      <EntityTypeMapping TypeName="TestingModel.tblTester">
+        <MappingFragment StoreEntitySet="tblTester">
+          <ScalarProperty Name="Tst_Id" ColumnName="Tst_Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ep_Id" ColumnName="ep_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

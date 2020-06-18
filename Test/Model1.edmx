@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TestingModelStoreContainer">
+          <EntitySet Name="tblAllot" EntityType="TestingModel.Store.tblAllot" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblEmployee" EntityType="TestingModel.Store.tblEmployee" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblProject" EntityType="TestingModel.Store.tblProject" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTester" EntityType="TestingModel.Store.tblTester" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblAllot_tblProject" Association="TestingModel.Store.FK_tblAllot_tblProject">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblAllot" EntitySet="tblAllot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAllot_tblTester" Association="TestingModel.Store.FK_tblAllot_tblTester">
+            <End Role="tblTester" EntitySet="tblTester" />
+            <End Role="tblAllot" EntitySet="tblAllot" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblAllot">
+          <Key>
+            <PropertyRef Name="Alt_Id" />
+          </Key>
+          <Property Name="Alt_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Pr_Id" Type="int" />
+          <Property Name="Tst_Id" Type="int" />
+          <Property Name="Date" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Pst_Date" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="emp_SL" />
+          </Key>
+          <Property Name="emp_SL" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ep_Id" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="Pr_Id" />
+          </Key>
+          <Property Name="Pr_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Domain" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblTester">
+          <Key>
+            <PropertyRef Name="Tst_Id" />
+          </Key>
+          <Property Name="Tst_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Adress" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="Email_Id" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="ep_Id" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tblAllot_tblProject">
+          <End Role="tblProject" Type="TestingModel.Store.tblProject" Multiplicity="0..1" />
+          <End Role="tblAllot" Type="TestingModel.Store.tblAllot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Pr_Id" />
+            </Principal>
+            <Dependent Role="tblAllot">
+              <PropertyRef Name="Pr_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAllot_tblTester">
+          <End Role="tblTester" Type="TestingModel.Store.tblTester" Multiplicity="0..1" />
+          <End Role="tblAllot" Type="TestingModel.Store.tblAllot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTester">
+              <PropertyRef Name="Tst_Id" />
+            </Principal>
+            <Dependent Role="tblAllot">
+              <PropertyRef Name="Tst_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestingModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TestingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAllots" EntityType="TestingModel.tblAllot" />
+          <EntitySet Name="tblEmployees" EntityType="TestingModel.tblEmployee" />
+          <EntitySet Name="tblProjects" EntityType="TestingModel.tblProject" />
+          <EntitySet Name="tblTesters" EntityType="TestingModel.tblTester" />
+          <AssociationSet Name="FK_tblAllot_tblProject" Association="TestingModel.FK_tblAllot_tblProject">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblAllot" EntitySet="tblAllots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAllot_tblTester" Association="TestingModel.FK_tblAllot_tblTester">
+            <End Role="tblTester" EntitySet="tblTesters" />
+            <End Role="tblAllot" EntitySet="tblAllots" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblAllot">
+          <Key>
+            <PropertyRef Name="Alt_Id" />
+          </Key>
+          <Property Name="Alt_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pr_Id" Type="Int32" />
+          <Property Name="Tst_Id" Type="Int32" />
+          <Property Name="Date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Pst_Date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblProject" Relationship="TestingModel.FK_tblAllot_tblProject" FromRole="tblAllot" ToRole="tblProject" />
+          <NavigationProperty Name="tblTester" Relationship="TestingModel.FK_tblAllot_tblTester" FromRole="tblAllot" ToRole="tblTester" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="emp_SL" />
+          </Key>
+          <Property Name="emp_SL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ep_Id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="Pr_Id" />
+          </Key>
+          <Property Name="Pr_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Domain" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblAllots" Relationship="TestingModel.FK_tblAllot_tblProject" FromRole="tblProject" ToRole="tblAllot" />
+        </EntityType>
+        <EntityType Name="tblTester">
+          <Key>
+            <PropertyRef Name="Tst_Id" />
+          </Key>
+          <Property Name="Tst_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Adress" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Email_Id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ep_Id" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="tblAllots" Relationship="TestingModel.FK_tblAllot_tblTester" FromRole="tblTester" ToRole="tblAllot" />
+        </EntityType>
+        <Association Name="FK_tblAllot_tblProject">
+          <End Role="tblProject" Type="TestingModel.tblProject" Multiplicity="0..1" />
+          <End Role="tblAllot" Type="TestingModel.tblAllot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="Pr_Id" />
+            </Principal>
+            <Dependent Role="tblAllot">
+              <PropertyRef Name="Pr_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAllot_tblTester">
+          <End Role="tblTester" Type="TestingModel.tblTester" Multiplicity="0..1" />
+          <End Role="tblAllot" Type="TestingModel.tblAllot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTester">
+              <PropertyRef Name="Tst_Id" />
+            </Principal>
+            <Dependent Role="tblAllot">
+              <PropertyRef Name="Tst_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestingModelStoreContainer" CdmEntityContainer="TestingEntities">
+          <EntitySetMapping Name="tblAllots">
+            <EntityTypeMapping TypeName="TestingModel.tblAllot">
+              <MappingFragment StoreEntitySet="tblAllot">
+                <ScalarProperty Name="Alt_Id" ColumnName="Alt_Id" />
+                <ScalarProperty Name="Pr_Id" ColumnName="Pr_Id" />
+                <ScalarProperty Name="Tst_Id" ColumnName="Tst_Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Pst_Date" ColumnName="Pst_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployees">
+            <EntityTypeMapping TypeName="TestingModel.tblEmployee">
+              <MappingFragment StoreEntitySet="tblEmployee">
+                <ScalarProperty Name="emp_SL" ColumnName="emp_SL" />
+                <ScalarProperty Name="ep_Id" ColumnName="ep_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjects">
+            <EntityTypeMapping TypeName="TestingModel.tblProject">
+              <MappingFragment StoreEntitySet="tblProject">
+                <ScalarProperty Name="Pr_Id" ColumnName="Pr_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Domain" ColumnName="Domain" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTesters">
+            <EntityTypeMapping TypeName="TestingModel.tblTester">
+              <MappingFragment StoreEntitySet="tblTester">
+                <ScalarProperty Name="Tst_Id" ColumnName="Tst_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ep_Id" ColumnName="ep_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="TestingModel.tblAllot" Width="1.5" PointX="3" PointY="1" Height="2.7494921875000005" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.tblEmployee" Width="1.5" PointX="2.75" PointY="4.75" Height="1.4033821614583335" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.tblProject" Width="1.5" PointX="0.75" PointY="1.375" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.tblTester" Width="1.5" PointX="0.75" PointY="4" Height="2.7494921874999996" IsExpanded="true" />
+        <AssociationConnector Association="TestingModel.FK_tblAllot_tblProject" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.3651432291666667" />
+          <ConnectorPoint PointX="3" PointY="2.3651432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="TestingModel.FK_tblAllot_tblTester" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.34375" />
+          <ConnectorPoint PointX="4.40625" PointY="4.34375" />
+          <ConnectorPoint PointX="4.40625" PointY="3.7494921875000005" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
